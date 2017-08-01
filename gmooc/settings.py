@@ -16,6 +16,7 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
+sys.path.insert(0, os.path.join(BASE_DIR, "extra_apps"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -27,6 +28,10 @@ SECRET_KEY = 'xss^=_hii(tc5s)dun3t8j(ha-h%+9tk$wmya2*d7k#5jvh1jb'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)
 
 # Application definition
 
@@ -43,6 +48,8 @@ INSTALLED_APPS = [
     'operation',
     'organization',
     'courses',
+    'xadmin',
+    'crispy_forms',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -129,3 +136,6 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
